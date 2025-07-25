@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Immortal Cultivation: project #1</title>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/icons.css"/>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/metro.css">
+    <style>
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    color: inherit;
+  }
+
+  .externalIcon {
+    width: 24px;
+    height: 24px;
+  }
+  </style>
+  </head>
+  <body class="cloak h-100-vh">
+    <canvas id="bgcanvas" style="position: absolute; inset: 10px; width: 100%; height: 100%; z-index: 2;"></canvas>
+    <div id="root" style="position:absolute; width: 100%;height: 100%; z-index: 10;"></div>
+    <script src="./matrix-flow.js"></script>
+    <script src="https://cdn.metroui.org.ua/current/metro.js"></script>
+    <script type="module" src="/src/home.tsx"></script>
+  </body>
+</html>
