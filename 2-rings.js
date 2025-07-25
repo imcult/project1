@@ -259,6 +259,7 @@ function draw() {
     //    runes22StartIndex -= 22;
 }
 
+var gameInterval2Rings;
 function run2Rings() {
     if (typeof gameInterval2Rings !== "undefined") clearInterval(gameInterval2Rings);
     gameInterval2Rings = setInterval(draw, FrameRateInMilliseconds);

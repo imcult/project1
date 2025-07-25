@@ -132,8 +132,8 @@ var draw = function () {
         } else {
             ctx.fillStyle = '#808080'; // 灰色 - 其他字符
         }
-        text = charsArray[charIndex];
-        x = (index * FontSize) + FontSize + 7;
+        const text = charsArray[charIndex];
+        const x = (index * FontSize) + FontSize + 7;
         ctx.fillText(text, x, y); // 使用全局ctx而不是重新获取
         if (y > 100 + Math.random() * 1e4) {
             yPositions[index] = 0;
@@ -144,6 +144,7 @@ var draw = function () {
     });
 };
 
+var gameIntervalMatrix;
 function runMatrix() {
     //console.log("runMatrix called");
     if (typeof gameIntervalMatrix != "undefined") clearInterval(gameIntervalMatrix);

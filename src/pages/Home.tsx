@@ -40,10 +40,10 @@ const Home = () => {
         showCharm("ATOM", ViewData.Address_ATOM);
     }
 
-    const stopMatrix = () => {
-        const sm = (window as any).stopMatrix;
-        if(sm) { sm(); }
-    }
+    // const stopMatrix = () => {
+    //     const sm = (window as any).stopMatrix;
+    //     if(sm) { sm(); }
+    // }
 
     useEffect(() => {
         // 添加延迟确保脚本完全加载
