@@ -19,13 +19,43 @@
     width: 24px;
     height: 24px;
   }
+  
+  body {
+    overflow: hidden;
+  }
   </style>
   </head>
   <body class="cloak h-100-vh">
-    <canvas id="bgcanvas" style="position: absolute; inset: 10px; width: 100%; height: 100%; z-index: 2;"></canvas>
+    <canvas id="bgcanvas" style="position: absolute; width: 100%; height: 100%; z-index: 1;"></canvas>
+    <div id="bgcontainer" style="position: absolute; width: 100%; height: 100%; z-index: 2; overflow: hidden;"></div>
     <div id="root" style="position:absolute; width: 100%;height: 100%; z-index: 10;"></div>
-    <script type="module" src="./matrix-flow.js"></script>
-    <script type="module" src="./2-rings.js"></script>
+    <script type="x-shader/x-vertex" id="vertexshader">
+        uniform float amplitude;
+        attribute float size;
+        attribute vec3 customColor;
+        varying vec3 vColor;
+        void main() {
+        vColor = customColor;
+        vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+        gl_PointSize = size * ( 300.0 / -mvPosition.z );
+        gl_Position = projectionMatrix * mvPosition;
+        }
+    </script>
+
+    <script type="x-shader/x-fragment" id="fragmentshader">
+        uniform vec3 color;
+        uniform sampler2D texture;
+        varying vec3 vColor;
+        void main() {
+        gl_FragColor = vec4( color * vColor, 1.0 );
+        gl_FragColor = gl_FragColor * texture2D( texture, gl_PointCoord );
+        }
+    </script>
+    <script src="./3d/three.min.js"></script>
+    <script src="./3d/Detector.js"></script>
+    <script src="./scenes/2-rings.js"></script>
+    <script src="./scenes/matrix-flow.js"></script>
+    <script src="./scenes/yin-yang-particles.js"></script>
     <script src="https://cdn.metroui.org.ua/current/metro.js"></script>
     <script type="module" src="/src/App.tsx"></script>
   </body>
