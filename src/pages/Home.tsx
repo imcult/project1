@@ -46,32 +46,11 @@ const Home = () => {
     // }
 
     useEffect(() => {
-        // 添加延迟确保脚本完全加载
-        // const timer = setTimeout(() => {
-        //     // 停止2-rings动画
-        //     const stop2Rings = (window as any).stop2Rings;
-        //     if(stop2Rings) { 
-        //         stop2Rings(); 
-        //     }
-            
-        //     // 初始化并启动matrix-flow动画
-        //     const resetMatrix = (window as any).resetMatrix;
-        //     if(resetMatrix) { 
-        //         resetMatrix(); 
-        //     }
-        //     const runMatrix = (window as any).runMatrix;
-        //     if(runMatrix) { 
-        //         runMatrix(); 
-        //     }
-        // }, 100); // 100ms延迟
-        // return () => clearTimeout(timer);
-        const resetMatrix = (window as any).resetMatrix;
-        if(resetMatrix) { 
-            resetMatrix(); 
-        }
-        const runMatrix = (window as any).runMatrix;
-        if(runMatrix) { 
-            runMatrix(); 
+        const resetScene = (window as any).resetScene;
+        if(resetScene) {
+            resetScene();
+            const runScene = (window as any).runScene;
+            if(runScene) { runScene(); }
         }
     }, []);
     

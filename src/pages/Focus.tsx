@@ -2,16 +2,12 @@ import { useEffect } from 'react';
 
 const Focus = () => {
     useEffect(() => {
-        // React advises to declare the async function directly inside useEffect
-        // async function loadData() {
-        // };
-        // You need to restrict it at some point
-        // This is just dummy code and should be replaced by actual
-        // 初始化并启动2-rings动画
-        const reset2Rings = (window as any).reset2Rings;
-        if(reset2Rings) { reset2Rings(); }
-        const run2Rings = (window as any).run2Rings;
-        if(run2Rings) { run2Rings(); }
+        const resetScene = (window as any).resetScene;
+        if(resetScene) {
+            resetScene();
+            const runScene = (window as any).runScene;
+            if(runScene) { runScene(); }
+        }
     }, []);
     
     return (
