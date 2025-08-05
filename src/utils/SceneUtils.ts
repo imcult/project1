@@ -1,5 +1,4 @@
 import { ViewData } from "../client/ViewData";
-import { Utility } from "./Utility";
 
 export class SceneUtils {
     static supportedScenes = [

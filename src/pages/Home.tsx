@@ -7,7 +7,7 @@ import { SceneUtils } from '../utils/SceneUtils';
 const Home = () => {
     const [coin, setCoin] = useState("");
     const [receiveAddress, setReceiveAddress] = useState("");
-    const [mode, setMode] = useState(ViewData.Modes.Scene);
+    const [, setMode] = useState(ViewData.Modes.Scene);
     const [scene, setScene] = useState(ViewData.Scenes.MatrixFlow);
     const [color, setColor] = useState("#3498db");
     //const nav = useNavigate();
@@ -82,7 +82,7 @@ const Home = () => {
     useEffect(() => {
         SceneUtils.tryRenderScene();
         // 将函数挂载到window对象
-        (window as any).handleColorSelect = (color: string, primitive: any) => {
+        (window as any).handleColorSelect = (color: string) => { // , primitive: any
             chooseColor(color);
         };
 
