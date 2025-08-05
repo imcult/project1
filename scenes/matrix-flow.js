@@ -81,6 +81,7 @@ class MatrixFlowAnimation {
         this.yPositions = null;
         this.fontSize = 10;
         this.gameIntervalMatrix = null;
+        this.destroied = false;
     }
 
     updateScale() {
@@ -106,6 +107,7 @@ class MatrixFlowAnimation {
     initialize(canvas_element, frame_rate_in_milliseconds, pont_size_of_font) {
         //console.log("Initialize called with:", canvas_element, frame_rate_in_milliseconds, pont_size_of_font);
         this.canvasElement = canvas_element;
+        this.canvasElement.style.zIndex = "5";
         this.ctx = this.canvasElement.getContext("2d");
         this.updateScale();
 
@@ -118,6 +120,7 @@ class MatrixFlowAnimation {
     }
 
     onWindowResize() {
+        if(this.destroied) return;
         this.updateScale();
     }
 
@@ -162,6 +165,9 @@ class MatrixFlowAnimation {
 
     stop() {
         if(typeof this.gameIntervalMatrix != "undefined") clearInterval(this.gameIntervalMatrix);
+        if(this.canvasElement) this.canvasElement.style.zIndex = "0";
+        // clear
+        if(this.ctx) this.ctx.clearRect(0, 0, this.width, this.height);
     }
 
     reset() {
@@ -193,6 +199,9 @@ class MatrixFlowAnimation {
         this.frameRateInMilliseconds = 99;
         this.fontSize = 10;
         this.gameIntervalMatrix = null;
+
+        window.removeEventListener("resize", this.onWindowResize);
+        this.destroied = true;
     }
 }
 

@@ -25,6 +25,7 @@
         this.runes25StartIndex = 0;
         this.runes22StartIndex = 0;
         this.gameInterval2Rings = null;
+        this.destroied = false;
     }
 
     // [min, max)
@@ -136,6 +137,7 @@
 
     init(canvas_element, frame_rate_in_milliseconds) {
         this.canvasElement = canvas_element;
+        this.canvasElement.style.zIndex = "5";
         this.ctx = this.canvasElement.getContext("2d");
         this.updateScale();
 
@@ -168,6 +170,7 @@
     }
 
     onWindowResize() {
+        if(this.destroied) return;
         this.updateScale();
     }
 
@@ -287,6 +290,9 @@
 
     stop() {
         if(typeof this.gameInterval2Rings !== "undefined") clearInterval(this.gameInterval2Rings);
+        if(this.canvasElement) this.canvasElement.style.zIndex = "0";
+        // clear
+        if(this.ctx)this.ctx.clearRect(0, 0, this.width, this.height);
     }
 
     // 释放内存资源
@@ -321,6 +327,9 @@
         this.runes25Ready = false;
         this.runes22Ready = false;
         this.gameInterval2Rings = null;
+
+        window.removeEventListener("resize", this.onWindowResize);
+        this.destroied = true;
     }
 
     reset() {

@@ -8,6 +8,7 @@ class YinYangParticlesAnimation {
         this.sphere = null;
         this.noise = [];
         this.container = document.getElementById('bgcontainer');
+        this.container.style.zIndex = "5";
         this.WIDTH = this.container.clientWidth;
         this.HEIGHT = this.container.clientHeight;
         this.amount = 100000;
@@ -23,6 +24,7 @@ class YinYangParticlesAnimation {
             speed: 0.01
         };
         this.animationId = null;
+        this.destroied = false;
     }
 
     isInCircle(x, y) {
@@ -161,6 +163,7 @@ class YinYangParticlesAnimation {
     }
 
     onWindowResize() {
+        if(this.destroied) return;
         //this.camera.aspect = window.innerWidth / window.innerHeight;
         this.camera.aspect = this.container.clientWidth / this.container.clientHeight;
         this.camera.updateProjectionMatrix();
@@ -169,6 +172,10 @@ class YinYangParticlesAnimation {
     }
 
     render() {
+        if (this.isDestroyed || !this.sphere) {
+            return;
+        }
+        
         var time = Date.now() * 0.005;
         if (this.settings.static) { // static
             this.sphere.rotation.z = this.settings.angle;
@@ -204,6 +211,12 @@ class YinYangParticlesAnimation {
         if (this.animationId) {
             cancelAnimationFrame(this.animationId);
             this.animationId = null;
+        }
+        // clear
+        if(this.ctx) this.ctx.clearRect(0, 0, this.width, this.height);
+        if(this.container) {
+            this.container.innerHTML = ''; // clear first
+            this.container.style.zIndex = "0";
         }
     }
 
@@ -243,6 +256,9 @@ class YinYangParticlesAnimation {
             clockwise: true,
             speed: 0.01
         };
+
+        window.removeEventListener("resize", this.onWindowResize);
+        this.destroied = true;
     }
 }
 

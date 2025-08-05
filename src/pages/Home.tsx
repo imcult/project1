@@ -122,12 +122,17 @@ const Home = () => {
                 <div className='grid w-100'>
                     <div className="row p-2">
                         <div className='cell-4'></div>
-                        <div className='cell-2'>
+                        <div className='cell-1'>
                             <button className="button cycle pos-center" style={{ width: "56px", height: "56px" }} onClick={showThemeCharm}>
-                                <span className="mif-enter"></span>
+                                <span className="mif-enter mif-2x fg-cyan"></span>
                             </button>
                         </div>
                         <div className='cell-2'>
+                            <button className="button cycle pos-center" style={{ width: "56px", height: "56px" }} onClick={showThemeCharm}>
+                                <span className="mif-cog mif-2x"></span>
+                            </button>
+                        </div>
+                        <div className='cell-1'>
                             <div data-role="action-button">
                                 <button className="main-action">
                                     <span className="icon"><span className="mif-favorite fg-red"></span></span>
