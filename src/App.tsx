@@ -3,25 +3,11 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from "react-router";
 import Home from './pages/Home';
 import Focus from './pages/Focus';
-import { Utility } from './utils/Utility';
+import { SceneUtils } from './utils/SceneUtils';
+import { ViewData } from './client/ViewData';
 
-
-
-// 场景初始化函数
-function loadScene() {
-  const scene = Utility.getParamByKey('scene');
-  // 根据scene值调用相应的安装函数
-  if (scene === '2rings') {
-    (window as any).installScene_2Rings?.();
-  } else if (scene === 'yinyang') {  // 默认调用matrix场景
-    (window as any).installScene_Yinyang?.();
-  } else {  // 默认调用matrix场景
-    (window as any).installScene_Matrix?.();
-  }
-}
-
-// 在React组件渲染之前初始化场景
-loadScene();
+// 场景初始化函数，在React组件渲染之前初始化场景
+SceneUtils.loadScene(ViewData.Scenes.MatrixFlow);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -5,4 +5,14 @@ export class ViewData {
     public static Address_SOL = "Gzu1vRcHmzXZc78Fstq2sSBEjYCUaCTzkKQPjZvEdrCS";
     public static Address_STX = "SP1GDZVG5B3PKWYNTRPJZYWG0HEWXE9EW8VXAQFFW";
     public static Address_ATOM = "cosmos1ea46wdxmnstankptmwpe6p9pjatmm7rdehgelt";
+
+    public static Modes = {
+        Scene: "scene",
+        Color: "color"
+    }
+    public static Scenes = {
+        MatrixFlow: "matrix",
+        Rings: "rings",
+        Yinyang: "yinyang"
+    }
 }
