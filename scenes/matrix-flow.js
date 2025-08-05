@@ -83,21 +83,17 @@ class MatrixFlowAnimation {
         this.gameIntervalMatrix = null;
     }
 
-    initialize(canvas_element, frame_rate_in_milliseconds, pont_size_of_font) {
-        //console.log("Initialize called with:", canvas_element, frame_rate_in_milliseconds, pont_size_of_font);
-        this.canvasElement = canvas_element;
-        this.width = this.canvasElement.clientWidth;
-        this.height = this.canvasElement.clientHeight;
-        //console.log("Canvas dimensions:", this.width, "x", this.height);
-        this.ctx = this.canvasElement.getContext("2d");
-        //console.log("Canvas context:", this.ctx);
+    updateScale() {
+        // 获取窗口尺寸而不是canvas的clientWidth/clientHeight
+        this.width = window.innerWidth;
+        this.height = window.innerHeight;
+        // console.log("Window dimensions:", this.width, "x", this.height);
+        // console.log("Canvas client dimensions:", this.canvasElement.clientWidth, "x", this.canvasElement.clientHeight);
 
         var devicePixelRatio = window.devicePixelRatio || 1,
             backingStoreRatio = this.ctx.webkitBackingStorePixelRatio || 1,
             ratio = devicePixelRatio / backingStoreRatio;
-        // console.log("devicePixelRatio: " + devicePixelRatio);
-        // console.log("backingStoreRatio: " + backingStoreRatio);
-        // console.log("ratio: " + ratio);
+
         this.canvasElement.width = this.width * ratio;
         this.canvasElement.height = this.height * ratio;
         this.canvasElement.style.width = this.width + "px";
@@ -105,11 +101,24 @@ class MatrixFlowAnimation {
 
         //然后将画布缩放，将图像放大ratio倍画到画布上
         this.ctx.scale(ratio, ratio);
+    }
+
+    initialize(canvas_element, frame_rate_in_milliseconds, pont_size_of_font) {
+        //console.log("Initialize called with:", canvas_element, frame_rate_in_milliseconds, pont_size_of_font);
+        this.canvasElement = canvas_element;
+        this.ctx = this.canvasElement.getContext("2d");
+        this.updateScale();
 
         this.frameRateInMilliseconds = frame_rate_in_milliseconds;
         this.fontSize = pont_size_of_font;
         this.yPositions = Array(512).join(0).split('');
         //console.log("Matrix initialization completed");
+
+        window.addEventListener('resize', () => this.onWindowResize(), false);
+    }
+
+    onWindowResize() {
+        this.updateScale();
     }
 
     draw() {

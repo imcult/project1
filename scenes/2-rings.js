@@ -95,16 +95,15 @@
         return data;
     }
 
-    init(canvas_element, frame_rate_in_milliseconds) {
-        this.canvasElement = canvas_element;
-        this.width = this.canvasElement.clientWidth;
-        this.height = this.canvasElement.clientHeight;
+    updateScale() {
+        this.width = window.innerWidth;
+        this.height = window.innerHeight;
         console.log("Canvas dimensions:", this.width, "x", this.height);
-        this.ctx = this.canvasElement.getContext("2d");
-
+        
         var devicePixelRatio = window.devicePixelRatio || 1,
             backingStoreRatio = this.ctx.webkitBackingStorePixelRatio || 1,
             ratio = devicePixelRatio / backingStoreRatio;
+        
         this.canvasElement.width = this.width * ratio;
         this.canvasElement.height = this.height * ratio;
         this.canvasElement.style.width = this.width + "px";
@@ -112,9 +111,7 @@
 
         //然后将画布缩放，将图像放大ratio倍画到画布上
         this.ctx.scale(ratio, ratio);
-
-        this.FrameRateInMilliseconds = frame_rate_in_milliseconds;
-
+        
         this.originPos.x = this.width / 2;
         this.originPos.y = this.height / 2;
         //console.log(this.originPos);
@@ -134,6 +131,15 @@
         if (this.rLarge < 300)
             this.rLarge = 300;
         this.rSmall = this.rLarge - 100;
+
+    }
+
+    init(canvas_element, frame_rate_in_milliseconds) {
+        this.canvasElement = canvas_element;
+        this.ctx = this.canvasElement.getContext("2d");
+        this.updateScale();
+
+        this.FrameRateInMilliseconds = frame_rate_in_milliseconds;
 
         // load
         this.spritesImage25 = new Image();
@@ -157,6 +163,12 @@
             console.error("Failed to load sprites-256-4.png");
         }
         this.spritesImage22.src = "/assets/runes/sprites-256-4.png";
+
+        window.addEventListener('resize', () => this.onWindowResize(), false);
+    }
+
+    onWindowResize() {
+        this.updateScale();
     }
 
     moveItems(array, propertyName, forward) {
