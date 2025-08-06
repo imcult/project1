@@ -15,6 +15,7 @@
     "@olton/metroui": "^5.1.9",
     "qrcode.react": "^4.2.0",
     "react": "^19.1.0",
+    "react-card-flip": "^1.2.3",
     "react-dom": "^19.1.0",
     "react-router": "^7.6.3"
   },
@@ -22,8 +23,8 @@
     "@eslint/js": "^9.30.1",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
-    "@vitejs/plugin-react": "^4.6.0",
     "@vitejs/plugin-basic-ssl": "^2.1.0",
+    "@vitejs/plugin-react": "^4.6.0",
     "eslint": "^9.30.1",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",

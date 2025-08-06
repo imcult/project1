@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-//import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import { QRCodeSVG } from 'qrcode.react';
 import { ViewData } from '../client/ViewData';
 import { SceneUtils } from '../utils/SceneUtils';
@@ -10,7 +10,8 @@ const Home = () => {
     const [, setMode] = useState(ViewData.Modes.Scene);
     const [scene, setScene] = useState(ViewData.Scenes.MatrixFlow);
     const [color, setColor] = useState("#3498db");
-    //const nav = useNavigate();
+    const nav = useNavigate();
+
     const showCharm = (coin_symbol: string, address: string) => {
         setCoin(coin_symbol);
         setReceiveAddress(address);
@@ -114,7 +115,10 @@ const Home = () => {
                 <a className="button cycle ml-1">
                     <span className="mif-handshake"></span>
                 </a>
-                <a className="button cycle ml-1">
+                <a className="button cycle ml-1" href="https://x.com/imcult_life" target="_blank">
+                    <span className="mif-x"></span>
+                </a>
+                <a className="button cycle ml-1" href="https://github.com/imcult/cards" target="_blank">
                     <span className="mif-github"></span>
                 </a>
             </nav>
@@ -123,7 +127,7 @@ const Home = () => {
                     <div className="row p-2">
                         <div className='cell-4'></div>
                         <div className='cell-1'>
-                            <button className="button cycle pos-center" style={{ width: "56px", height: "56px" }} onClick={showThemeCharm}>
+                            <button className="button cycle pos-center" style={{ width: "56px", height: "56px" }} onClick={() => { nav("/focus"); }}>
                                 <span className="mif-enter mif-2x fg-cyan"></span>
                             </button>
                         </div>

@@ -14,7 +14,7 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="focus" element={<Focus />} />
+        <Route path="/focus" element={<Focus />} />
         {/* 
         // /dashboard, /dashboard/settings
         <Route path="dashboard" element={<Dashboard />}>
