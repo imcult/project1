@@ -24,9 +24,9 @@ const Home = () => {
         charms.close();
     }
 
-    const showThemeCharm = () => {
+    const toggleThemeCharm = () => {
         const charms = Metro.getPlugin('#themeCharm', 'charms');
-        charms.open();
+        charms.toggle();
     }
     const closeThemeCharm = () => {
         const charms = Metro.getPlugin('#themeCharm', 'charms');
@@ -53,10 +53,6 @@ const Home = () => {
     const byAtom = () => {
         showCharm("ATOM", ViewData.Address_ATOM);
     }
-
-    // const handleColorSelect = (color: string, primitive: any) => {
-    //     chooseColor(color);
-    // }
 
     const chooseScene = (sceneKey: string) => {
         if (sceneKey === scene) {
@@ -132,7 +128,7 @@ const Home = () => {
                             </button>
                         </div>
                         <div className='cell-2'>
-                            <button className="button cycle pos-center" style={{ width: "56px", height: "56px" }} onClick={showThemeCharm}>
+                            <button className="button cycle pos-center" style={{ width: "56px", height: "56px" }} onClick={toggleThemeCharm}>
                                 <span className="mif-cog mif-2x"></span>
                             </button>
                         </div>
