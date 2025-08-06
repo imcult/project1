@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import ReactCardFlip from 'react-card-flip';
 import { CardsData } from '../client/CardsData';
+import { UIUtils } from '../utils/UIUtils';
 
 const Focus = () => {
     const [frontImage, setFrontImage] = useState("");
@@ -52,6 +53,9 @@ const Focus = () => {
                         </a> */}
                     </div>
 
+                    <button className="cycle ml-1" onClick={() => UIUtils.launchFullScreen(document.documentElement)}>
+                        <span className="mif-enlarge"></span>
+                    </button>
                     <button className="image-button ml-1" onClick={randomCard}>
                         <span className="icon mif-loop2"></span>
                         <span className="caption">Card</span>
