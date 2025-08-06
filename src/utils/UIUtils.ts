@@ -11,15 +11,4 @@ export class UIUtils {
         //     element.msRequestFullscreen();
         // }
     }
-
-    static setupHotkeyForFullScreen() {
-        document.addEventListener('keypress', (event) => {
-            const k = event.key || event.keyCode || event.which || event.charCode;
-            if (event.key === 'F11' || k === 51) { // 3/#
-                const element = document.documentElement;
-                UIUtils.launchFullScreen(document.documentElement);
-            }
-        });
-
-    }
 }
