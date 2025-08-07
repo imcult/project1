@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import ReactCardFlip from 'react-card-flip';
 import { CardsData } from '../client/CardsData';
 import { UIUtils } from '../utils/UIUtils';
+import ImageWithLoader from '../components/ImageWithLoader';
 
 const Focus = () => {
     const [frontImage, setFrontImage] = useState("");
@@ -29,6 +30,13 @@ const Focus = () => {
         setFrontImage(`/cards/${randomCard.id}-1.png`);
         setBackImage(`/cards/${randomCard.id}-2.png`);
         setIsFlipped(false);
+    }
+    const renderLoading = () => {
+        return (
+            <div className='d-flex flex-center w-100 h-100'>
+                <div data-role="activity" data-type="atom" data-style="color" data-size="medium"></div>
+            </div>
+        );
     }
 
     const handleCardClick = () => {
@@ -87,12 +95,17 @@ const Focus = () => {
                                 alignItems: "center",
                                 justifyContent: "center"
                             }}>
-                            <img src={frontImage} alt="" style={{
-                                maxWidth: "100%",
-                                maxHeight: "100%",
-                                objectFit: "contain",
-                                borderRadius: "8px"
-                            }} />
+                            <ImageWithLoader 
+                                src={frontImage} 
+                                alt="" 
+                                style={{
+                                    maxWidth: "100%",
+                                    maxHeight: "100%",
+                                    objectFit: "contain",
+                                    borderRadius: "8px"
+                                }}
+                                placeholder={renderLoading()}
+                            />
                         </div>
                     </div>
                     <div key="back" style={cardStyle} onClick={handleCardClick}>
@@ -105,12 +118,17 @@ const Focus = () => {
                                 alignItems: "center",
                                 justifyContent: "center"
                             }}>
-                            <img src={backImage} alt="" style={{
-                                maxWidth: "100%",
-                                maxHeight: "100%",
-                                objectFit: "contain",
-                                borderRadius: "8px"
-                            }} />
+                            <ImageWithLoader 
+                                src={backImage} 
+                                alt="" 
+                                style={{
+                                    maxWidth: "100%",
+                                    maxHeight: "100%",
+                                    objectFit: "contain",
+                                    borderRadius: "8px"
+                                }}
+                                placeholder={renderLoading()}
+                            />
                         </div>
                     </div>
                 </ReactCardFlip>
